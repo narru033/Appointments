@@ -1,0 +1,46 @@
+<%= form_for(@doctor) do |f| %>
+  <% if @doctor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+
+      <ul>
+      <% @doctor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :zip %><br>
+    <%= f.number_field :zip, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :school_received_degree_from %><br>
+    <%= f.text_field :school_received_degree_from, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :years_in_practice %><br>
+    <%= f.number_field :years_in_practice, class: 'form-control' %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit :class=> "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,46 @@
+<%= form_for(@pet) do |f| %>
+  <% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+
+      <ul>
+      <% @pet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name_of_pet %><br>
+    <%= f.text_field :name_of_pet, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :type_of_pet %><br>
+    <%= f.select :type_of_pet, options_for_select([ "dog", "cat", "bird" ]), class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :breed %><br>
+    <%= f.text_area :breed, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_last_visit %><br>
+    <%= f.text_field :date_of_last_visit, class: 'datepicker form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id, "Customer Name" %><br>
+    <%= f.select :customer_id, @users.collect {|p| [ p.username,p.id ] } %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit :class=> "btn btn-primary" %>
+  </div>
+<% end %>

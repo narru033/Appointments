@@ -1,0 +1,20 @@
+<h1>Welcome</h1>
+
+<% if @appointment.present? %>
+	<table class= "table table-bordered">
+		<thead>
+			<tr>
+			  <th>Pet Name</th>
+				<th>Date of Next Appointment</th>
+				<th>Reason for visit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @appointment.pet.try(:name_of_pet) %></td>
+				<td><% @appointment.pet.try(:requires_reminder_of_appointment) %></td>
+				<td><%= @appointment.reason_for_visit %></td>
+			</tr>
+		</tbody>
+	</table>
+<% end %>

@@ -1,0 +1,46 @@
+<%= form_for(@appointment) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date_of_visit %><br>
+    <%= f.text_field :date_of_visit, :class=> 'dateofvisit form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :pet_name %><br>
+    <%= f.select :pet_name,  options_for_select([ "dog", "cat", "bird" ]) %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.select :customer_id, @users.collect {|p| [ p.username, p.id ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :requires_reminder_of_appointment %><br>
+    <%= f.text_field :requires_reminder_of_appointment, :class=> 'requires_reminder_of_appointment form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :reason_for_visit %><br>
+    <%= f.text_area :reason_for_visit , class: 'form-control'%>
+  </div>
+  <div class="field">
+    <%= f.label :dector_id %><br>
+     <%= f.select :doctor_id, Doctor.all.collect {|p| [ p.name, p.id ] }, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :pet_id, "Pet Name" %><br>
+    <%= f.select :pet_id, Pet.all.collect {|p| [p.name_of_pet,  p.id ] }, class: 'form-control' %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit :class=> "btn btn-primary" %>
+  </div>
+<% end %>
